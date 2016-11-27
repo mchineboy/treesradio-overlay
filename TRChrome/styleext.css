@@ -1,0 +1,98 @@
+div#sidebar {
+   border-left: 2px #2d2f39 solid;
+   padding-left: 2px;
+}
+
+input#chatinput {
+    width: 99%;
+    margin-left: 2px;
+}
+
+body,html {
+    font-family: "Open Sans" !important;
+    src: url("https://fonts.googleapis.com/css?family=Open+Sans");
+}
+.volume-slider {
+    border-bottom-left-radius: 5px !important;
+    border-top-left-radius: 5px !important;
+    border-right: 1px black solid !important;
+    border-bottom: 1px black solid !important;
+}
+.volume-slider-bar-0 {
+    background-image: -webkit-gradient(linear, left, right, #0040d9, to(#1a62ff));
+    background-image: -webkit-linear-gradient(right, #0040d9, #1a62ff);
+    background-image: -moz-linear-gradient(right, #0040d9, #1a62ff);
+    background-image: linear-gradient(to right, #0040d9, #1a62ff);
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.like-button {
+    background-color: #77b300;
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+    border-top-right-radius: -5px !important;
+    border-bottom-right-radius: 0px !important;
+    border-bottom: 1px black solid !important;
+    background-image: -webkit-gradient(linear, left, right, from(#77b300), to(#609b00));
+    background-image: -webkit-linear-gradient(right, #77b300, #609b00);
+    background-image: -moz-linear-gradient(right, #77b300, #609b00);
+    background-image: linear-gradient(to right, #77b300, #609b00);;
+}
+
+.dislike-button {
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: -5px !important;
+    border-bottom:1px solid black !important;
+    background-image: -webkit-gradient(linear, left, right, from(#ff1928), to(#f01322));
+    background-image: -webkit-linear-gradient(right, #ff1928, #f01322);
+    background-image: -moz-linear-gradient(right, #ff1928, #f01322);
+    background-image: linear-gradient(to right, #ff1928, #f01322);
+}
+
+.grab-button {
+    border-top-left-radius: 5px !important;
+    background-image: -webkit-gradient(linear, left, right, from(#9700df), to(#b71aff));
+    background-image: -webkit-linear-gradient(right, #9700df, #b71aff);
+    background-image: -moz-linear-gradient(right, #9700df, #b71aff);
+    background-image: linear-gradient(to right, #9700df, #b71aff);
+    border-right: 1px black solid !important;
+    width:99% !important;
+    border-bottom: 1px black solid !important;
+    border-bottom-left-radius: 5px !important;
+}
+
+.fa-arrow-circle-o-down {
+    position: absolute;
+    padding-top: 10% !important;
+    right: 4.0vw !important;
+}
+
+.join-waitlist {
+    border-radius: 5px !important;
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#508b00), to(#77b300));
+    background-image: -webkit-linear-gradient(bottom right, #508b00, #77b300);
+    background-image: -moz-linear-gradient(bottom right, #508b00, #77b300);
+    background-image: linear-gradient(to bottom right, #508b00, #77b300);
+}
+
+#playlists-bar {
+    padding-bottom:1px !important;
+}
+
+#currentsong-metadata {
+    border: none !important;
+    padding-right:5px !important;
+}
+
+a#pagemods {
+    margin-top: 8px !important;
+    margin-right: 5px !important;
+}
+
+a#filterchat {
+    margin-top: 8px !important;
+    margin-right: 5px !important;
+}
