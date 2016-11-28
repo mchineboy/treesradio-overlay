@@ -40,6 +40,13 @@ body,html {
     background-image: linear-gradient(to right, #77b300, #609b00);;
 }
 
+.like-button:hover {
+    background-image: -webkit-gradient(linear, left, right, from(#77b300), to(#b0eb50));
+    background-image: -webkit-linear-gradient(right, #77b300, #b0eb50);
+    background-image: -moz-linear-gradient(right, #77b300, #b0eb50);
+    background-image: linear-gradient(to right, #77b300, #b0eb50);;
+}
+
 .dislike-button {
     border-top-left-radius: 5px !important;
     border-bottom-left-radius: 5px !important;
@@ -52,6 +59,13 @@ body,html {
     background-image: linear-gradient(to right, #ff1928, #f01322);
 }
 
+.dislike-button:hover {
+    background-image: -webkit-gradient(linear, left, right, from(#ff1928), to(#ff5372));
+    background-image: -webkit-linear-gradient(right, #ff1928, #ff5372);
+    background-image: -moz-linear-gradient(right, #ff1928, #ff5372);
+    background-image: linear-gradient(to right, #ff1928, #ff5372);
+}
+
 .grab-button {
     border-top-left-radius: 5px !important;
     background-image: -webkit-gradient(linear, left, right, from(#9700df), to(#b71aff));
@@ -62,6 +76,13 @@ body,html {
     width:99% !important;
     border-bottom: 1px black solid !important;
     border-bottom-left-radius: 5px !important;
+}
+
+.grab-button:hover {
+    background-image: -webkit-gradient(linear, left, right, from(#9700df), to(#f75aff));
+    background-image: -webkit-linear-gradient(right, #9700df, #f75aff);
+    background-image: -moz-linear-gradient(right, #9700df, #f75aff);
+    background-image: linear-gradient(to right, #9700df, #f75aff);
 }
 
 .fa-arrow-circle-o-down {
@@ -97,19 +118,16 @@ span.feedback-dislikes {
 }
 
 .join-waitlist-pressed {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#EED202), to(#cea202)) !important;
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#EED202), to(#cea202)) !important;
     background-image: -webkit-linear-gradient(top, #EED202, #cea202) !important;
     background-image: -moz-linear-gradient(top, #EED202, #cea202) !important;
-    background-image: linear-gradient(to bottom, #EED202, #cea202) !important;
-    transition: background-image 0.2s ease-in-out !important;
-    -webkit-transition: background-image 0.2s ease-in-out !important;
+    background-image: linear-gradient(to bottom right, #EED202, #cea202) !important;
+    transition: opacity 1s ease-in-out !important;
+    -webkit-transition: opacity 1s ease-in-out !important;
+    opacity: .9;
+    color: white !important;
 }
 
 .join-waitlist-pressed:hover {
-    background-image: -webkit-gradient(linear, left, right, from(#ff1928), to(#f01322)) !important;
-    background-image: -webkit-linear-gradient(right, #ff1928, #f01322) !important;
-    background-image: -moz-linear-gradient(right, #ff1928, #f01322) !important;
-    background-image: linear-gradient(to right, #ff1928, #f01322) !important;
-    transition: background-image 0.2s ease-in-out !important;
-    -webkit-transition: background-image 0.2s ease-in-out !important; 
+    opacity: 1;
 }
