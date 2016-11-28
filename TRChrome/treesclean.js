@@ -2,16 +2,14 @@ var timer;
 var chatfiltered = false;
 
 $(function(){
-   console.log("Trying to add button.");
-   timer = setTimeout(addPageModButton, 6000);
+   timer = setTimeout(addPageModButton, 9000);
 });
 
 function addPageModButton () {
     var button = $('#pagemods');
-    console.log(button);
-    if ( !button.innerText ) {
+    
+    if ( !button.text() ) {
         clearTimeout(timer);
-        console.log("adding button now");
         $('<div class="btn-group"><a class="btn btn-success" alt="Filter chat for mentions" id="filterchat">@ <i class="fa fa-filter"></i></a></div><div class="btn-group"><a class="btn btn-danger" id="pagemods">Page Mods</a></div>').insertAfter('div.nav.navbar-nav.navbar-right');
         
         $('#filterchat').click(
@@ -30,7 +28,6 @@ function addPageModButton () {
                                     var thistext = $(this).text();
                                     
                                     if ( thistext.match(regex) ) {
-                                        console.log(thistext);
                                         $(e).show('fast');
                                     }
                                 }
@@ -38,7 +35,8 @@ function addPageModButton () {
                         }
                     }
                 );
-                $("ul#chatbox").animate({ scrollTop: $('ul#chatbox').offset().bottom }, 500);
+                $('div#chatscroll').scrollTop($('div#chatscroll')[0].scrollHeight);
+                
                 if ( chatfiltered ) {
                     chatfiltered = false;
                 } else {
@@ -48,32 +46,27 @@ function addPageModButton () {
         );
         $('#pagemods').click(
             function () {
-                console.log("Trying to page.");
                 
                 var chat = $('#chatinput').val();
 
                 $('div.show-ousers-btn.col-lg-3').click();
 
-                console.log($('ul[class="users-list"] li span').each(
+                $('ul[class="users-list"] li span').each(
                     function(c, e) {
                         var thisclass = $(e).attr("class");
-                        console.log(e);
                         if ( thisclass.match(/mod|owner|admin/i) ) {
-                            console.log(chat);
                             chat = chat + "@" + e.innerText + " ";
                         }
                     }
-                ));
+                );
 
                 $('div.show-chat-btn.col-lg-3').click();
-                console.log(chat);
                 $('#chatinput').val(chat);
                 $('#chatinput').focus();
             }
         )
      } else {
         clearTimeout(timer);
-        console.log("Trying again");
-        timer = setTimeout(addPageModButton, 1000);
+        timer = setTimeout(addPageModButton, 5000);
     }
 }
