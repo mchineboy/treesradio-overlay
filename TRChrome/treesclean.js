@@ -3,6 +3,7 @@ var chatfiltered = false;
 
 $(function(){
    timer = setTimeout(addPageModButton, 9000);
+   
 });
 
 function addPageModButton () {
@@ -10,6 +11,8 @@ function addPageModButton () {
     
     if ( !button.text() ) {
         clearTimeout(timer);
+        $('span[class="beta-tag"]').text("βeta+secret cannapowers");
+
         $('<div class="btn-group"><a class="btn btn-success" alt="Filter chat for mentions" id="filterchat">@ <i class="fa fa-filter"></i></a></div><div class="btn-group"><a class="btn btn-danger" id="pagemods">Page Mods</a></div>').insertAfter('div.nav.navbar-nav.navbar-right');
         
         $('#filterchat').click(
