@@ -91,3 +91,25 @@ a#pagemods,a#filterchat,a#regioncheck {
     margin-top: 8px !important;
     margin-right: 5px !important;
 }
+
+span.feedback-dislikes {
+    margin-right:3px !important;
+}
+
+.join-waitlist-pressed {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#EED202), to(#cea202)) !important;
+    background-image: -webkit-linear-gradient(top, #EED202, #cea202) !important;
+    background-image: -moz-linear-gradient(top, #EED202, #cea202) !important;
+    background-image: linear-gradient(to bottom, #EED202, #cea202) !important;
+    transition: background-image 0.2s ease-in-out !important;
+    -webkit-transition: background-image 0.2s ease-in-out !important;
+}
+
+.join-waitlist-pressed:hover {
+    background-image: -webkit-gradient(linear, left, right, from(#ff1928), to(#f01322)) !important;
+    background-image: -webkit-linear-gradient(right, #ff1928, #f01322) !important;
+    background-image: -moz-linear-gradient(right, #ff1928, #f01322) !important;
+    background-image: linear-gradient(to right, #ff1928, #f01322) !important;
+    transition: background-image 0.2s ease-in-out !important;
+    -webkit-transition: background-image 0.2s ease-in-out !important; 
+}
