@@ -13,8 +13,14 @@ function addPageModButton () {
         clearTimeout(timer);
         $('span[class="beta-tag"]').text("βeta+secret cannapowers");
 
-        $('<div class="btn-group"><a class="btn btn-success" alt="Filter chat for mentions" id="filterchat">@ <i class="fa fa-filter"></i></a></div><div class="btn-group"><a class="btn btn-danger" id="pagemods">Page Mods</a></div>').insertAfter('div.nav.navbar-nav.navbar-right');
+        $('<div class="btn-group"><a class="btn btn-success" id="regioncheck"><i class="fa fa-youtube"></i>&nbsp;<i class="fa fa-globe"></i>&nbsp;<i class="fa fa-check"></i></div><div class="btn-group"><a class="btn btn-success" alt="Filter chat for mentions" id="filterchat">@ <i class="fa fa-filter"></i></a></div><div class="btn-group"><a class="btn btn-danger" id="pagemods">Page Mods</a></div>').insertAfter('div.nav.navbar-nav.navbar-right');
         
+        $('#regioncheck').click(
+            function () {
+                var vidurl = $('iframe#youtube-player-0').attr("src").match(/\/embed\/(.*?)\?/);
+                window.open("https://polsy.org.uk/stuff/ytrestrict.cgi?ytid=" + vidurl[1]);
+            }
+        );
         $('#filterchat').click(
             function() {
                 var $username = "@" + $('#username').text();
