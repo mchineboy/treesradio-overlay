@@ -115,8 +115,7 @@ span.feedback-dislikes {
     background-image: -webkit-linear-gradient(top, #EED202, #cea202) !important;
     background-image: -moz-linear-gradient(top, #EED202, #cea202) !important;
     background-image: linear-gradient(to bottom right, #EED202, #cea202) !important;
-    transition: all 1s ease !important;
-    -webkit-transition: all 1s ease !important;
+    -webkit-transition: all .5s ease !important;
     opacity: 0.8;
     color: white !important;
     -webkit-box-reflect: above 0px -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.1), color-stop(.7, transparent), to(transparent)));
@@ -128,8 +127,8 @@ span.feedback-dislikes {
     background-image: -webkit-linear-gradient(bottom right, #508b00, #77b300);
     background-image: -moz-linear-gradient(bottom right, #508b00, #77b300);
     background-image: linear-gradient(to bottom right, #508b00, #77b300);
-    transition: all 1s ease !important;
-    -webkit-transition: all 1s ease !important;
+    transition: all .5s ease !important;
+    -webkit-transition: all .5s ease !important;
     opacity: 0.8;
     color: white !important;
     -webkit-box-reflect: above 0px -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.1), color-stop(.7, transparent), to(transparent)));
