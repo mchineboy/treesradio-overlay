@@ -9,7 +9,7 @@ input#chatinput {
 }
 
 body,html {
-    font-family: "Open Sans" !important;
+    font-family: "Open Sans", sans-serif !important;
     src: url("https://fonts.googleapis.com/css?family=Open+Sans");
 }
 .volume-slider {
@@ -130,4 +130,10 @@ span.feedback-dislikes {
 
 .join-waitlist-pressed:hover {
     opacity: 1;
+}
+
+.chat-username {
+    font-family: "Droid Serif", serif !important;
+    font-weight: lighter !important;
+    src: url("https://fonts.googleapis.com/css?family=Droid+Serif");
 }

@@ -1,5 +1,7 @@
 var timer;
 var chatfiltered = false;
+var vidobserver;
+var obsconfig = { attributes: true, attributeOldValue: true, childList: true, characterData: true };
 
 $(function(){
    timer = setTimeout(addPageModButton, 9000);
@@ -10,6 +12,16 @@ function addPageModButton () {
     var button = $('#pagemods');
     
     if ( !button.text() ) {
+        var iframe = $('div.reactplayer')[0];
+        console.log(iframe);
+
+        vidobserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation){
+                console.log(mutation);
+            });
+        });
+        
+        vidobserver.observe(iframe, obsconfig);
         clearTimeout(timer);
         $('span[class="beta-tag"]').text("βeta+secret cannapowers");
 
