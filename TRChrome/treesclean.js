@@ -161,7 +161,7 @@ function convertImageLink() {
 
                 elepos = $(e).position();
                 scrolltobottom = false;
-                if ( elepos.top > 0 && href.match(/^http(s|):\/\/i\.imgur|jpg$|gif$|png$|jpeg$|/i) ) {
+                if ( elepos.top > 0 && href.match(/^http(s|):\/\/i\.imgur|jpg$|gif$|png$|jpeg$/i) ) {
                     scrolltobottom=true;
                     if ( href.match(/gifv|mp4|webm/i) ) { 
                         newhref = href.replace(/(gifv|mp4)/i, "webm");
