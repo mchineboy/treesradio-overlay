@@ -151,7 +151,7 @@ function letsJoinWaitlist() {
 var seenurl;
 
 function convertImageLink() {
-    chatobserver = setTimeout(convertImageLink, 1000);
+    chatobserver = setTimeout(convertImageLink, 500);
     $($('ul#chatbox li').get().reverse()).each(function(c,e){
         $(e).find('span.Linkify a').each(
             function(co,el){
