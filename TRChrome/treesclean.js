@@ -3,6 +3,7 @@ var chatfiltered = false;
 var vidobserver;
 var obsconfig = { attributes: true, attributeOldValue: true, childList: true, characterData: true };
 var waitlisttimer;
+var chatobserver;
 
 $(function(){
    timer = setTimeout(initializeInterface, 9000);
@@ -31,6 +32,10 @@ function initializeInterface () {
         
         vidobserver.observe(iframe, obsconfig);
         
+        // Try to track changes in the chat box.
+
+        chatobserver = setTimeout(convertImageLink, 1000);
+
         // Make the changes to the UI.
 
         $('span[class="beta-tag"]').text("βeta+secret cannapowers");
@@ -140,5 +145,23 @@ function checkWaitListStatus() {
 function letsJoinWaitlist() {
     clearTimeout(clickwait);
     $('div.join-waitlist').click();
+}
+var seenurl;
 
+function convertImageLink() {
+    chatobserver = setTimeout(convertImageLink, 2000);
+    $($('ul#chatbox li').get().reverse()).each(function(c,e){
+        $(e).find('span.Linkify a').each(
+            function(co,el){
+                if ( co > 5 ) return; // Limit to 10 for performance. And likely page bleed.
+                var href = $(el).attr('href');
+                if ( $(el).children().count > 0 && $(el).children().get(0).nodeName == 'img' ) 
+                    return;
+                elepos = $(e).position();
+                
+                if ( elepos.top > 0 && href.match(/i\.imgur|jpg|gif|png|jpeg|/i) )
+                    $(el).html('<img src="' + href + '" width="300px"/>');
+            }
+        )
+    });
 }

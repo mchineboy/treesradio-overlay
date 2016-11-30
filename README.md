@@ -1,6 +1,19 @@
 # treesradio-overlay
 ## Overview
 Since 1.0 is currently in development with a release date of "when it is done". I thought creating a Chrome Extension to enhance the current interface would be fun.
+### Current Features
+* YouTube Region Check Button
+* Filter Chat for your username's mentions
+* Page Mods (copys and pastes all the current online mods into the chat box)
+* Open Sans for main font. Proven readability.
+* Droid Serif for the username font in chat, stops the L and I issue.
+* Buttons are prettier and dont bleed over each other.
+* +secret cannapowers
+### Planned Features
+* Sort options your personal playlist
+* Search your personal playlist
+* Image links are automatically displayed in the playlist.
+
 ## Install
 I have not released this to the Chrome Store yet. But will in December. Therefore you have to run it as a Chrome Developer Extension.
 * browse to chrome://extensions
