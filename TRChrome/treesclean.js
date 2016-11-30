@@ -160,12 +160,22 @@ function convertImageLink() {
                     return;
 
                 elepos = $(e).position();
-                
-                if ( elepos.top > 0 && href.match(/^http(s|):\/\/i\.imgur|jpg$|gif$|png$|jpeg$|/i) )
-                    $(el).html('<img src="' + href + '" width="320px"/>');
+                scrolltobottom = false;
+                if ( elepos.top > 0 && href.match(/^http(s|):\/\/i\.imgur|jpg$|gif$|png$|jpeg$|/i) ) {
+                    scrolltobottom=true;
+                    if ( href.match(/gifv/i) ) { 
+                        newhref = href.replace(/gifv/i, "webm");
+                        newhref = newhref.replace(/http(s|):/i,"");
+                        mp4href = href.replace(/gifv/i, "mp4");
+                        mp4href = mp4href.replace(/http(s|):/i, "");
 
-                console.log($('div#chatscroll')[0].scrollHeight);
-                $('div#chatscroll').scrollTop($('div#chatscroll')[0].scrollHeight);
+                        $(el).html('<span style="width:320px"><video autoplay loop muted><source src="' + newhref + '" type="video/webm"></source><source src="'+mp4href+'" type="video/mp4"></source></video></span>')
+                    } else {
+                        $(el).html('<img src="' + href + '" width="320px"/>');
+                    }
+                }
+                if ( scrolltobottom )
+                    $('div#chatscroll').scrollTop($('div#chatscroll')[0].scrollHeight);
             }
         )
     });
