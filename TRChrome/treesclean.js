@@ -163,10 +163,10 @@ function convertImageLink() {
                 scrolltobottom = false;
                 if ( elepos.top > 0 && href.match(/^http(s|):\/\/i\.imgur|jpg$|gif$|png$|jpeg$|/i) ) {
                     scrolltobottom=true;
-                    if ( href.match(/gifv/i) ) { 
-                        newhref = href.replace(/gifv/i, "webm");
+                    if ( href.match(/gifv|mp4|webm/i) ) { 
+                        newhref = href.replace(/(gifv|mp4)/i, "webm");
                         newhref = newhref.replace(/http(s|):/i,"");
-                        mp4href = href.replace(/gifv/i, "mp4");
+                        mp4href = href.replace(/(gifv|webm)/i, "mp4");
                         mp4href = mp4href.replace(/http(s|):/i, "");
 
                         $(el).html('<span style="width:320px"><video autoplay loop muted><source src="' + newhref + '" type="video/webm"></source><source src="'+mp4href+'" type="video/mp4"></source></video></span>')
