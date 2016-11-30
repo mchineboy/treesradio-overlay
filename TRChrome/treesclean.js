@@ -47,7 +47,9 @@ function initializeInterface () {
         // Region Check Click Event
         $('#regioncheck').click(
             function () {
-                var vidurl = $('iframe#youtube-player-0').attr("src").match(/\/embed\/(.*?)\?/);
+                
+                var vidurl = $('#youtube-player-0').contents().find("link[rel='canonical']")[0].attr('href');
+                console.log(vidurl);
                 window.open("https://polsy.org.uk/stuff/ytrestrict.cgi?ytid=" + vidurl[1]);
             }
         );
@@ -169,7 +171,7 @@ function convertImageLink() {
                         mp4href = href.replace(/(gifv|webm)/i, "mp4");
                         mp4href = mp4href.replace(/http(s|):/i, "");
 
-                        $(el).html('<span style="width:320px"><video autoplay loop muted><source src="' + newhref + '" type="video/webm"></source><source src="'+mp4href+'" type="video/mp4"></source></video></span>')
+                        $(el).html('<span style="width:320px"><video style="width:320px" autoplay loop muted><source src="' + newhref + '" type="video/webm"></source><source src="'+mp4href+'" type="video/mp4"></source></video></span>')
                     } else {
                         $(el).html('<img src="' + href + '" width="320px"/>');
                     }
