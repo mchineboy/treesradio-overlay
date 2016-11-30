@@ -61,7 +61,7 @@ function initializeInterface () {
                     function (c, e) {
                         if ( chatfiltered ) {
                             $(e).show('fast');
-                            
+                            $('div#chatscroll').scrollTop($('div#chatscroll')[0].scrollHeight);
                         } else {
                             $(e).hide('fast');
                             $(e).find('span').each(
@@ -155,12 +155,17 @@ function convertImageLink() {
             function(co,el){
                 if ( co > 5 ) return; // Limit to 10 for performance. And likely page bleed.
                 var href = $(el).attr('href');
+
                 if ( $(el).children().count > 0 && $(el).children().get(0).nodeName == 'img' ) 
                     return;
+
                 elepos = $(e).position();
                 
-                if ( elepos.top > 0 && href.match(/i\.imgur|jpg|gif|png|jpeg|/i) )
-                    $(el).html('<img src="' + href + '" width="300px"/>');
+                if ( elepos.top > 0 && href.match(/^http(s|):\/\/i\.imgur|jpg$|gif$|png$|jpeg$|/i) )
+                    $(el).html('<img src="' + href + '" width="320px"/>');
+
+                console.log($('div#chatscroll')[0].scrollHeight);
+                $('div#chatscroll').scrollTop($('div#chatscroll')[0].scrollHeight);
             }
         )
     });
