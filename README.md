@@ -1,6 +1,7 @@
 # treesradio-overlay
 ## Overview
 Since 1.0 is currently in development with a release date of "when it is done". I thought creating a Chrome Extension to enhance the current interface would be fun.
+
 ### Current Features
 * YouTube Region Check Button
 * Filter Chat for your username's mentions
@@ -10,6 +11,7 @@ Since 1.0 is currently in development with a release date of "when it is done". 
 * Buttons are prettier and dont bleed over each other.
 * +secret cannapowers
 * Image links are automatically displayed in the playlist.
+
 ### Planned Features
 * Sort options your personal playlist
 * Search your personal playlist

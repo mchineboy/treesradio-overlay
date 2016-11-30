@@ -151,11 +151,11 @@ function letsJoinWaitlist() {
 var seenurl;
 
 function convertImageLink() {
-    chatobserver = setTimeout(convertImageLink, 2000);
+    chatobserver = setTimeout(convertImageLink, 1000);
     $($('ul#chatbox li').get().reverse()).each(function(c,e){
         $(e).find('span.Linkify a').each(
             function(co,el){
-                if ( co > 5 ) return; // Limit to 10 for performance. And likely page bleed.
+                if ( co >= 5 ) return; // Limit to 5 for performance. And likely page bleed.
                 var href = $(el).attr('href');
 
                 if ( $(el).children().count > 0 && $(el).children().get(0).nodeName == 'img' ) 
@@ -163,7 +163,7 @@ function convertImageLink() {
 
                 elepos = $(e).position();
                 scrolltobottom = false;
-                if ( elepos.top > 0 && href.match(/^http(s|):\/\/i\.imgur|jpg$|gif$|png$|jpeg$/i) ) {
+                if ( elepos.top > 0 && href.match(/^http(s|):\/\/i\.imgur|\.jpg$|\.gif$|\.png$|\.jpeg$/i) ) {
                     scrolltobottom=true;
                     if ( href.match(/gifv|mp4|webm/i) ) { 
                         newhref = href.replace(/(gifv|mp4)/i, "webm");
@@ -171,7 +171,7 @@ function convertImageLink() {
                         mp4href = href.replace(/(gifv|webm)/i, "mp4");
                         mp4href = mp4href.replace(/http(s|):/i, "");
 
-                        $(el).html('<span style="width:320px"><video style="width:320px" autoplay loop muted><source src="' + newhref + '" type="video/webm"></source><source src="'+mp4href+'" type="video/mp4"></source></video></span>')
+                        $(el).html('<span style="width:325px"><video style="width:325px" autoplay loop muted><source src="' + newhref + '" type="video/webm"></source><source src="'+mp4href+'" type="video/mp4"></source></video></span>')
                     } else {
                         $(el).html('<img src="' + href + '" width="320px"/>');
                     }
