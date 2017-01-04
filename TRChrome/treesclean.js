@@ -258,10 +258,10 @@ function sortPlaylist(sortBy, currentIndex) {
     }
 
     console.log("Sorting " + currentIndex + " of " + $sortlist.length);
-    
+
     $sortlist[currentIndex].toclick.click();
     
-    if ( $sortlist.length == currentIndex + 1 ) { 
+    if ( $sortlist.length == currentIndex ) { 
         console.log("We're done sorting");
         donesorting = true;
         currentIndex = 0;
@@ -285,7 +285,10 @@ function sortPlaylist(sortBy, currentIndex) {
         }
         console.log("timesort: " + sorttime + " alphasort: " + sortalpha);
     } else {
-        setTimeout(sortPlaylist(sortBy, currentIndex+1), 500);
+        doThisAsync(
+            function () {
+                sortPlaylist(sortBy, currentIndex+1);
+        }, 200);
     }
 
 }
@@ -295,5 +298,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 });
 
 function doThisAsync(fn, timeout) {
-    setTimeout(fn, timeout);
+    setTimeout(function(){
+        fn();
+    }, timeout);
 }
