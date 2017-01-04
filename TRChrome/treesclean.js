@@ -283,7 +283,7 @@ function sortPlaylist(sortBy, currentIndex) {
         }
         console.log("timesort: " + sorttime + " alphasort: " + sortalpha);
     } else {
-        setTimeout(sortPlaylist(sortBy, currentIndex+1), 1000);
+        setTimeout(sortPlaylist(sortBy, currentIndex+1), 500);
     }
 
 }

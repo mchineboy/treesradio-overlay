@@ -17,7 +17,9 @@ Since 1.0 is currently in development with a release date of "when it is done". 
 * Search your personal playlist
 
 ## Install
-I have not released this to the Chrome Store yet. But will soon. Therefore you have to run it as a Chrome Developer Extension.
+* Now Available in the Chrome Store! Search for Trees Radio
+
+## Developer Install
 * browse to chrome://extensions
 * Click on the check box for Developer Mode
 * Download the CRX file, or clone the entire project.
