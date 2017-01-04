@@ -11,13 +11,13 @@ Since 1.0 is currently in development with a release date of "when it is done". 
 * Buttons are prettier and dont bleed over each other.
 * +secret cannapowers
 * Image links are automatically displayed in the playlist.
+* You can now sort your playlists by name, and by time of track.
 
 ### Planned Features
-* Sort options your personal playlist
 * Search your personal playlist
 
 ## Install
-I have not released this to the Chrome Store yet. But will in December. Therefore you have to run it as a Chrome Developer Extension.
+I have not released this to the Chrome Store yet. But will soon. Therefore you have to run it as a Chrome Developer Extension.
 * browse to chrome://extensions
 * Click on the check box for Developer Mode
 * Download the CRX file, or clone the entire project.
