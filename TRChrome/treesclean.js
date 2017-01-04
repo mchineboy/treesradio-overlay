@@ -236,7 +236,7 @@ function sortPlaylist(sortBy, currentIndex) {
             
             if ( sortBy == "time" ) {
                 time = tosort.split(':');
-                sortval = (time[0] * 60) + time[1];
+                sortval = (parseInt(time[0]) * 60) + parseInt(time[1]);
             }
             
             $sortlist.push( { listindex: c, val: sortval, toclick: $(e).find("i[class='fa fa-2x fa-arrow-up pl-move-to-top']")} );
@@ -257,6 +257,8 @@ function sortPlaylist(sortBy, currentIndex) {
         $sortlist.reverse();
     }
 
+    console.log("Sorting " + currentIndex + " of " + $sortlist.length);
+    
     $sortlist[currentIndex].toclick.click();
     
     if ( $sortlist.length == currentIndex + 1 ) { 
