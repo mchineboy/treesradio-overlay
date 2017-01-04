@@ -6,6 +6,10 @@ var waitlisttimer;
 var chatobserver;
 var lockscroll = false;
 var lockpos;
+var sorttime = "asc";
+var sortalpha = "desc";
+var sortplaylist;
+var maxsorts = 0;
 
 $(function(){
    timer = setTimeout(initializeInterface, 9000);
@@ -35,6 +39,12 @@ function initializeInterface () {
 
         $('<div class="btn-group"><a class="btn btn-success" id="regioncheck"><i class="fa fa-youtube"></i>&nbsp;<i class="fa fa-globe"></i>&nbsp;<i class="fa fa-check"></i></div><div class="btn-group"><a class="btn btn-success" alt="Filter chat for mentions" id="filterchat">@ <i class="fa fa-filter"></i></a></div><div class="btn-group"><a class="btn btn-danger" id="pagemods">Page Mods</a></div>').insertAfter('div.nav.navbar-nav.navbar-right');
         
+        $('span[class="playlist-shuffle-btn fa fa-random fa-3x"]').before(
+            
+            '<div id="stime" class="btn btn-sm btn-default" title="Sort Playlist by Time"><span id="timeicon" class="fa fa-sort-amount-desc fa-3x"></span></div>' +
+            '<div id="salpha" class="btn btn-sm btn-default" title="Sort Playlist by Name"><span id="nameicon" class="fa fa-sort-alpha-asc fa-3x"></span></div>'
+        );
+        
         // Set up events.
 
         $('div#chatscroll').scroll( function (c,e) { 
@@ -45,6 +55,21 @@ function initializeInterface () {
                 console.log('unlocking scroll');
             }
         });
+
+        $('div#stime').click(
+            function (c, e) {
+                maxsorts = 0;
+                doThisAsync(sortPlaylist('time', 0), 500);
+            }
+        );
+
+        $('div#salpha').click(
+            function (c, e) {
+                maxsorts = 0;
+                doThisAsync(sortPlaylist('alpha', 0), 500);
+            }
+        );
+
 
         // Region Check Click Event
         $('#regioncheck').click(
@@ -191,7 +216,82 @@ function convertImageLink() {
     });
 }
 
+
+
+function sortPlaylist(sortBy, currentIndex) {
+    var $sortlist = Array();
+    var $toclick = Array();
+    
+    maxsorts++;
+   
+    var eleclass = "pl-time";
+
+    if ( sortBy == 'alpha' ) eleclass="pl-media-title";
+
+    $('ul#playlist-ul li').each(
+        function (c, e) {
+            
+            var tosort = $(e).find("span[class='" + eleclass +"']").text();
+            var sortval = tosort;
+            
+            if ( sortBy == "time" ) {
+                time = tosort.split(':');
+                sortval = (time[0] * 60) + time[1];
+            }
+            
+            $sortlist.push( { listindex: c, val: sortval, toclick: $(e).find("i[class='fa fa-2x fa-arrow-up pl-move-to-top']")} );
+        }
+    );
+
+    if ( maxsorts > $sortlist.length ) {
+        maxsorts = 0;
+        return;
+    }
+    
+    $sortlist.sort(function(a,b){ 
+        if ( a.val < b.val ) return -1;
+        if ( a.val > b.val ) return 1;
+        return 0; });
+    
+    if ( ( sortBy == "time" && sorttime == "desc" ) || ( sortBy =="alpha" && sortalpha == "desc")) {
+        $sortlist.reverse();
+    }
+
+    $sortlist[currentIndex].toclick.click();
+    
+    if ( $sortlist.length == currentIndex + 1 ) { 
+        console.log("We're done sorting");
+        donesorting = true;
+        currentIndex = 0;
+        maxsorts = 0;
+        if ( sortBy == "time" ) {
+            if ( sorttime == "asc" ) {
+                sorttime = "desc";
+                $('#timeicon').attr('class', "fa fa-sort-amount-asc fa-3x");
+            } else { 
+                sorttime = "asc";
+                $('#timeicon').attr('class', "fa fa-sort-amount-desc fa-3x");
+            }
+        } else {
+            if ( sortalpha == "asc" ) {
+                sortalpha = "desc";
+                $('#nameicon').attr('class', "fa fa-sort-alpha-asc fa-3x");
+            } else {
+                sortalpha = "asc";
+                $('#nameicon').attr('class', "fa fa-sort-alpha-desc fa-3x");
+            }
+        }
+        console.log("timesort: " + sorttime + " alphasort: " + sortalpha);
+    } else {
+        setTimeout(sortPlaylist(sortBy, currentIndex+1), 1000);
+    }
+
+}
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   console.log(request.message);
   sendResponse("ok");
 });
+
+function doThisAsync(fn, timeout) {
+    setTimeout(fn, timeout);
+}
