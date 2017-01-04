@@ -5,10 +5,15 @@
   "description": "This will modify the TR page to be a little cleaner.",
   "version": "1.0",
   "background": 
-    { "scripts": ["trovly.js"] },
+    { "persistent": true, "scripts": ["trovly.js"] },
   "browser_action": {
     "default_icon": "icon.png"
   },
+  "icons": {
+  "128": "icon-128.png",
+  "16": "icon-16.png",
+  "48": "icon-48.png"
+ },
   "content_scripts": [
       {
       "matches": ["https://treesradio.com/*", "https://*.youtube.com/*"],
@@ -19,8 +24,10 @@
   ],
   "permissions": [
     "activeTab",
-    "https://ajax.googleapis.com/",
     "contextMenus",
-    "https://*.youtube.com/*"
-  ]
+    "https://treesradio.com/*",
+    "webRequest", 
+    "webRequestBlocking"
+  ],
+  "content_security_policy": "default-src 'self'; content-src 'self' 'https'; frame-src 'self' 'https'"
 }

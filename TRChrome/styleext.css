@@ -153,3 +153,8 @@ span.feedback-dislikes {
     font-weight: lighter !important;
     src: url("https://fonts.googleapis.com/css?family=Droid+Serif");
 }
+
+.username-user {
+    font-weight: heavy !important;
+    color: #77b300 !important;
+}

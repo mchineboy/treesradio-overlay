@@ -4,33 +4,26 @@ var vidobserver;
 var obsconfig = { attributes: true, attributeOldValue: true, childList: true, characterData: true };
 var waitlisttimer;
 var chatobserver;
+var lockscroll = false;
+var lockpos;
 
 $(function(){
    timer = setTimeout(initializeInterface, 9000);
    
 });
 
+
+
 function initializeInterface () {
     var button = $('#pagemods');
     
     if ( !button.text() ) {
         clearTimeout(timer);
+
         // Check to see if the person really is in the waitlist.
         
         checkWaitListStatus();
-        waitlisttimer = setTimeout(checkWaitListStatus(), 60000);
-        
-        // This doesn't work because I cannot detect the iframe change. 
-        // Need to talk to Gryph
-        var iframe = $('div.reactplayer')[0];
-        
-        vidobserver = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation){
-                console.log(mutation);
-            });
-        });
-        
-        vidobserver.observe(iframe, obsconfig);
+        waitlisttimer = setTimeout(checkWaitListStatus(), 1000);
         
         // Try to track changes in the chat box.
 
@@ -43,6 +36,15 @@ function initializeInterface () {
         $('<div class="btn-group"><a class="btn btn-success" id="regioncheck"><i class="fa fa-youtube"></i>&nbsp;<i class="fa fa-globe"></i>&nbsp;<i class="fa fa-check"></i></div><div class="btn-group"><a class="btn btn-success" alt="Filter chat for mentions" id="filterchat">@ <i class="fa fa-filter"></i></a></div><div class="btn-group"><a class="btn btn-danger" id="pagemods">Page Mods</a></div>').insertAfter('div.nav.navbar-nav.navbar-right');
         
         // Set up events.
+
+        $('div#chatscroll').scroll( function (c,e) { 
+            lockscroll = true;
+            lockpos = $(e).position;
+            if ( lockpos == $(e).scrollHeight ) {
+                lockscroll = false;
+                console.log('unlocking scroll');
+            }
+        });
 
         // Region Check Click Event
         $('#regioncheck').click(
@@ -163,17 +165,23 @@ function convertImageLink() {
 
                 elepos = $(e).position();
                 scrolltobottom = false;
+                
                 if ( elepos.top > 0 && href.match(/^http(s|):\/\/i\.imgur|\.jpg$|\.gif$|\.png$|\.jpeg$/i) ) {
-                    scrolltobottom=true;
+                    if ( lockscroll == false )
+                        scrolltobottom=true;
+
                     if ( href.match(/gifv|mp4|webm/i) ) { 
+                        // For now do nothing.
+                        /*
                         newhref = href.replace(/(gifv|mp4)/i, "webm");
                         newhref = newhref.replace(/http(s|):/i,"");
                         mp4href = href.replace(/(gifv|webm)/i, "mp4");
                         mp4href = mp4href.replace(/http(s|):/i, "");
 
                         $(el).html('<span style="width:325px"><video style="width:325px" autoplay loop muted><source src="' + newhref + '" type="video/webm"></source><source src="'+mp4href+'" type="video/mp4"></source></video></span>')
+                        */
                     } else {
-                        $(el).html('<img src="' + href + '" width="320px"/>');
+                        $(el).html('<img src="' + href + '" width="325px"/>');
                     }
                 }
                 if ( scrolltobottom )
@@ -182,3 +190,8 @@ function convertImageLink() {
         )
     });
 }
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  console.log(request.message);
+  sendResponse("ok");
+});
