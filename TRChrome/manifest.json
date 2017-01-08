@@ -3,7 +3,7 @@
 
   "name": "Trees Radio Cleanup",
   "description": "This will modify the TR page to be a little cleaner.",
-  "version": "1.2",
+  "version": "1.3",
   "background": 
     { "persistent": true, "scripts": ["trovly.js"] },
   "browser_action": {

@@ -10,6 +10,7 @@ var sorttime = "asc";
 var sortalpha = "desc";
 var sortplaylist;
 var maxsorts = 0;
+var scrolllocktime;
 
 $(function(){
    timer = setTimeout(initializeInterface, 9000);
@@ -49,11 +50,7 @@ function initializeInterface () {
 
         $('div#chatscroll').scroll( function (c,e) { 
             lockscroll = true;
-            lockpos = $(e).position;
-            if ( lockpos == $(e).scrollHeight ) {
-                lockscroll = false;
-                console.log('unlocking scroll');
-            }
+            scrolllocktime = new Date();
         });
 
         $('div#stime').click(
@@ -74,10 +71,16 @@ function initializeInterface () {
         // Region Check Click Event
         $('#regioncheck').click(
             function () {
+                try {
+                    // This doesn't work. Ever. Because I'm trying to reach into an iframe.
+                    var vidurl = $('#youtube-player-0').contents().find("link[rel='canonical']")[0].attr('href');
+                    console.log(vidurl);
+                    window.open("https://polsy.org.uk/stuff/ytrestrict.cgi?ytid=" + vidurl[1]);
+                } 
+                catch ( e ) {
+                    window.open("https://polsy.org.uk/stuff/yrestrict.cgi");
+                }
                 
-                var vidurl = $('#youtube-player-0').contents().find("link[rel='canonical']")[0].attr('href');
-                console.log(vidurl);
-                window.open("https://polsy.org.uk/stuff/ytrestrict.cgi?ytid=" + vidurl[1]);
             }
         );
 
@@ -192,8 +195,15 @@ function convertImageLink() {
                 scrolltobottom = false;
                 
                 if ( elepos.top > 0 && href.match(/^http(s|):\/\/i\.imgur|\.jpg$|\.gif$|\.png$|\.jpeg$/i) ) {
-                    if ( lockscroll == false )
-                        scrolltobottom=true;
+                    // If the user scrolled in the chat window, let's lock it. For at least 10 seconds.
+                    if ( lockscroll == true ) {
+                        checktime = new Date();
+                        var seconds = Math.ceil(checktime.getTime() - scrolllocktime.getTime());
+                        // Reset after 30 seconds.
+                        if ( seconds > 30000 ) { 
+                            scrolltobottom = true;
+                        }
+                    }
 
                     if ( href.match(/gifv|mp4|webm/i) ) { 
                         // For now do nothing.
